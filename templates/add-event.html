@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/addevent.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <title>Add Event</title>
+    
+</head>
+<body>
+    <a href="{% url 'dashboard' %}" class="btn">Back </a>
+    
+    <div class="container">
+        <h3>ENTER THE EVENT DETAILS</h3>
+        <form id="event-form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="event_name" id="event_name" placeholder="Event Name" required>
+            <input type="date" name="event_date" id="event_date" required>
+            <input type="text" name="start_time" id="start_time" required placeholder="hour:min:sec">
+            <p>to</p>
+            <input type="text" name="end_time" id="end_time" required placeholder="hour:min:sec">
+            <input type="text" name="event_venue" id="event_venue" placeholder="Venue" required>
+            <input type="text" name="event_description" id="event_description" placeholder="Description" required>
+            <input type="number" name="registration_fee" id="registration_fee" placeholder="Registration Fee (₹)" required>
+            <input type="file" name="event_poster" accept="image/" required>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <script>
+            flatpickr("#start_time", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "h:i K", // 12-hour format
+                time_24hr: false
+            });
+        </script>
+        <script>
+            flatpickr("#end_time", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "h:i K", // 12-hour format
+                time_24hr: false
+            });
+        </script>
+        
+    </div>
+</body>
+</html>

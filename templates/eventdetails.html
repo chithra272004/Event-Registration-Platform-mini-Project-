@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/eventdetails.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Event Details</title>
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="title"></h1>
+    </header>
+    
+    <div class="container">
+        <div class="event-details-box">
+            <h2 class="event-name">{{ obj.event_name }}</h2>
+            {% if obj.event_poster %}
+            
+            
+                
+                <img src="{{ obj.event_poster.url }}" alt="Event Poster" width="500" class="center-image">
+            
+        
+            {% endif %}
+
+            <p class="event-info"><strong>📅 Date:</strong> {{ obj.event_date }} </p>
+            <p class="event-info"><strong>⏰ Time:</strong> {{ obj.start_time }} - {{ obj.end_time }}</p>
+            <p class="event-info"><strong>📍 Venue:</strong> {{ obj.event_venue }}</p>
+
+            <!-- Event Details Box -->
+            <div class="event-details-box-content">
+                <h3 class="event-details-title">Event Details</h3>
+                <p class="event-details-description">
+                    {{ obj.event_description }}
+                </p>
+            </div>
+
+            <div class="prize-register">
+                <p class="event-prize"><strong>REG FEE:</strong> ₹{{ obj.registration_fee }} </p>
+                <a href="{% url 'register' obj.pk %}" class="register-link">Register Now</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

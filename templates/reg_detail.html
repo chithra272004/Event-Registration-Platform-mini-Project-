@@ -1,0 +1,57 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participants</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/regdt.css' %}">
+</head>
+<body>
+
+        <a href="{% url 'organisedevents' %}" class="btn">Back</a>
+
+    <header class="header">
+        
+        <h1 class="title">Participants</h1>
+    </header>
+
+    <div class="container">
+        <h2 id="event-title">{{event.event_name}}</h2>
+        {% if participants %}
+        <table class="event-table">
+            <thead>
+                <tr>
+                    <th>Participant Name</th>
+                    <th>Email</th>
+                    <th>WhatsApp No</th>
+                <th>Department</th>
+                <th>Semester</th>
+                <th>College</th>
+                </tr>
+            </thead>
+            {% for participant in participants %}
+            <tbody id="participants-list">
+                
+                <tr>
+                <td>{{ participant.participant_name }}</td>
+                <td>{{ participant.participant_email }}</td>
+                <td>{{ participant.participant_no }}</td>
+                <td>{{ participant.participant_dept }}</td>
+                <td>{{ participant.participant_sem }}</td>
+                <td>{{ participant.participant_clg }}</td>
+                </tr>
+                
+            </tbody>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No participants have registered yet.</p>
+    {% endif %}
+    </div>
+
+    
+</body>
+</html>

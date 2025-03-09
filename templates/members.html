@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/members.css' %}">
+    <title>Members</title>
+    
+</head>
+<body>
+
+    <div class="container">
+        <h1><strong>MEMBER OF ?</strong></h1>
+        <div class="buttons">
+            <button class="btn" onclick="redirectToLogin('NSS')">NSS</button>
+        <button class="btn" onclick="redirectToLogin('NCC')">NCC</button>
+        <button class="btn" onclick="redirectToLogin('CSI')">CSI</button>
+        <button class="btn" onclick="redirectToLogin('IEEE')">IEEE</button>
+        <button class="btn" onclick="redirectToLogin('IEDC')">IEDC</button>
+        <button class="btn" onclick="redirectToLogin('GDG')">GDG</button>
+        <button class="btn" onclick="redirectToLogin('MULEARN')">MULEARN</button>
+        <button class="btn" onclick="redirectToLogin('TINKERHUB')">TINKERHUB</button>
+        <button class="btn" onclick="redirectToLogin('SPACE CLUB')">SPACE CLUB</button>
+        </div>
+    </div>
+    <script>
+        function redirectToLogin(organisation) {
+            window.location.href = `/login/?organisation=${organisation}`;
+        }
+    </script>
+    
+</body>
+</html>

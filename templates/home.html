@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    
+    <title>CEP EVENTS</title>
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="title">CEP EVENTS</h1>
+        <div class="host-link">
+            <a href="{% url 'members' %}">Are you a host?</a>
+        </div>
+    </header>
+    {% for event in events %}
+    <div class="container">
+        
+            <div class="event">
+                <div class="event-details">
+                    
+                    <!-- Left Section -->
+                    <div class="left">
+                        <h2 class="event_name">{{ event.event_name }}</h2>
+                        <p class="organization_name">Organized by: {{ event.organisation.organisation }}</p>
+                        <p class="event_date">📅 Date: {{ event.event_date }}</p>
+                        <p class="event_time">⏰ Time: {{ event.start_time }} - {{ event.end_time }}</p>
+                    </div>
+
+                    <!-- Center Section (Poster) -->
+                    <div class="center">
+                        {% if event.event_poster %}
+                            <a href="{{ event.event_poster.url }}" target="_blank">
+                                <img src="{{ event.event_poster.url }}" alt="Event Poster" width="200">
+                            </a>
+                        {% else %}
+                            <p>No Poster Available</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Right Section (Registration Fee & Details) -->
+                    <div class="right">
+                        <p class="prize">REG FEE: ₹{{ event.registration_fee }}</p>
+                        <a href="{% url 'eventdetails' event.pk %}" class="register">View Details</a>
+                    </div>
+                    
+                </div>
+            </div>
+        
+    </div>
+    {% empty %}
+            <p>No events available at the moment.</p>
+        {% endfor %}
+        
+</body>
+</html>

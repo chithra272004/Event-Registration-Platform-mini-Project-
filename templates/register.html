@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <title>Registeration</title>
+
+   
+</head>
+<body>
+    <div class="container">
+        <h3>ENTER PARTICIPANTS DETAILS</h3>
+        <form id="event-form" method="POST" >
+            {% csrf_token %}
+            <input type="text" name="participant_name" id="participant_name" placeholder="Name" required>
+            <input type="text" name="participant_email" id="participant_email" placeholder="Email" required>
+            <input type="text" name="participant_no" id="participant_no" placeholder="WhatsApp Number" required>
+            <input type="text" name="participant_dept" id="participant_dept" placeholder="Department" required>
+            <input type="text" name="participant_sem" id="participant_sem" placeholder="Semester" required>
+            <input type="text" name="participant_clg" id="participant_clg" placeholder="College Name" required>
+            
+            
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>

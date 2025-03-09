@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <title>Logout</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Are you sure you want to logout?</h2>
+        <a href="{% url 'logout' %}" class="btn">Yes, Logout</a>
+        <a href="{% url 'dashboard' %}" class="btn-cancel">Cancel</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/addevent.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <title>Edit Event</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h3>EDIT THE EVENT DETAILS</h3>
+        <form id="event-form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <input type="text" value="{{obj.event_name}}" name="event_name" id="event_name" placeholder="Event Name" required>
+            <input type="date" value="{{obj.event_date|date:'Y-m-d'}}" name="event_date" id="event_date" placeholder="Event Name" required>
+            <input type="text" value="{{obj.start_time|time:'H:i'}}" name="start_time" id="start_time" placeholder="Event Name" required>
+            <p>to</p>
+            <input type="text" value="{{obj.end_time|time:'H:i'}}" name="end_time" id="end_time" required>
+            <input type="text" value="{{obj.event_venue}}" name="event_venue" id="event_venue" placeholder="Venue" required>
+            <input type="text" value="{{obj.event_description}}" name="event_description" id="event_description" placeholder="Description" required>
+            <input type="number" value="{{obj.registration_fee}}" name="registration_fee" id="registration_fee" placeholder="Registration Fee (₹)" required>
+            {% if obj.event_poster %}
+                <img src="{{ obj.event_poster.url }}" alt="Current Poster" width="200px">
+                <p>Current File: {{ obj.event_poster.name }}</p>
+            {% endif %}
+            <input type="file"  name="event_poster" accept="image/">
+            <button type="submit" href="{% url 'organisedevents' %}" class="submit-btn">Submit</button>
+        </form>
+        <script>
+            flatpickr("#start_time", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "h:i K", // 12-hour format
+                time_24hr: false
+            });
+        </script>
+        <script>
+            flatpickr("#end_time", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "h:i K", // 12-hour format
+                time_24hr: false
+            });
+        </script>
+    </div>
+</body>
+</html>

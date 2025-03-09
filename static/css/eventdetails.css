@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.header {
+    background-color: #E8C1C1; 
+    color: black;
+    text-align: center;
+    padding: 40px;
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.title {
+    font-size: 60px;
+    font-family: 'Pacifico', cursive;
+    font-weight: 700;
+    color: black; 
+    letter-spacing: 2px; 
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2); 
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+
+.event-details-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.event-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+
+.event-description {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #555;
+    text-align: center;
+}
+
+.event-info {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #777;
+    text-align: left;
+}
+
+.prize-register {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.event-prize {
+    font-size: 22px;
+    font-weight: bold;
+    color: #E63946;
+}
+
+.register-link {
+    padding: 12px 25px;
+    background-color: #E63946;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.register-link:hover {
+    background-color: #C02D36;
+    transform: scale(1.05);
+}
+
+.center-image {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+}
+
+
+@media (max-width: 768px) {
+    .event-details-box {
+        padding: 20px;
+    }
+
+    .event-name {
+        font-size: 28px;
+    }
+
+    .event-description {
+        font-size: 16px;
+    }
+
+    .event-info {
+        font-size: 16px;
+    }
+
+    .register-link {
+        padding: 10px 20px;
+    }
+}

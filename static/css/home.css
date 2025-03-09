@@ -1,0 +1,156 @@
+
+/* Reset margins and paddings for full width */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header {
+    width:100vw;;
+    position:relative; /* Full width */
+    text-align: center; /* Center the content horizontally */ /* Example background color for header */
+    padding: 20px ;
+    justify-content:center;
+    background-color:  #E6BCCD; 
+    display:flex;
+    align-items: center;/* Vertical padding for the header */
+}
+.title {
+    font-size: 3rem; /* Adjust font size as per your design */
+    font-family: 'Pacifico', cursive; /* Apply the Pacifico font */
+    color: black; /* White color for title */
+    margin: 0; /* Remove default margin */
+}
+.host-link {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.host-link a {
+    color:blue;
+    text-decoration: underline;
+    font-size: 16px;
+}
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+/* Header */
+.header {
+    background-color: #f6c5c5; /* Powder Rose */
+    color: black;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+}
+
+
+/* Event Container */
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Event Box */
+.event {
+    width: 75%;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+
+/* Event Details */
+.event-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+/* Left Side (Event Name, Date, Time) */
+.left {
+    text-align: left;
+}
+
+.center {
+    
+    text-align: center;
+}
+
+.event-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.organization-name {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.event-date, .event-time {
+    font-size: 16px;
+    color: #777;
+    margin: 3px 0;
+}
+
+/* Right Side (Prize & Register Button) */
+.right {
+    text-align: center;
+}
+
+.prize {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff6363;
+    margin-bottom: 10px;
+}
+
+/* Register Button */
+.register {
+    background-color: #ff6363;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.register:hover {
+    background-color: #e05252;
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5rem;
+    }
+    .event {
+        width: 95%;
+        padding: 15px;
+    }
+    .event-name {
+        font-size: 20px;
+    }
+    .organization-name, .event-date, .event-time {
+        font-size: 14px;
+    }
+    .prize, .register {
+        font-size: 14px;
+    }
+}
