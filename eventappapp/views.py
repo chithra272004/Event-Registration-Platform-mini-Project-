@@ -40,7 +40,7 @@ def user_logout(request):
     return redirect('home')   
 
 def home(request):
-    events = AddEvents.objects.order_by('-event_date')  # Fetch all events from the database
+    events = AddEvents.objects.order_by('-event_date')  
     return render(request, 'home.html', {'events': events})
 
 def eventdetails(request,pk):
@@ -48,12 +48,12 @@ def eventdetails(request,pk):
     return render(request,'eventdetails.html',{'obj':events})
 
 def dashboard(request):
-    organisation_id = request.session.get('organisation_id')  # ✅ Get organisation ID
+    organisation_id = request.session.get('organisation_id')  # Get organisation ID
     if not organisation_id:
         return redirect('login')
 
-    organisation = CustomUser.objects.get(id=organisation_id)  # ✅ Get the logged-in organisation
-    events = AddEvents.objects.filter(organisation=organisation)  # ✅ Filter events by organisation instance
+    organisation = CustomUser.objects.get(id=organisation_id)  # Get the logged-in organisation
+    events = AddEvents.objects.filter(organisation=organisation)  #  Filter events by organisation instance
 
     return render(request, "dashboard.html", {"events": events, "organisation": organisation.organisation})
 
@@ -91,12 +91,12 @@ def addevent(request):
         if end_time_12hr:
             end_time = datetime.strptime(end_time_12hr, "%I:%M %p").time()
 
-        organisation_id = request.session.get('organisation_id')  # ✅ Retrieve user ID
+        organisation_id = request.session.get('organisation_id')  # Retrieve user ID
         if not organisation_id:
             messages.error(request, "Organisation not found. Please log in again.")
             return redirect('login')
 
-        organisation = CustomUser.objects.get(id=organisation_id)  # ✅ Fetch organisation by ID
+        organisation = CustomUser.objects.get(id=organisation_id)  # Fetch organisation by ID
 
         AddEvents.objects.create(
             event_name=event_name,
