@@ -40,7 +40,7 @@ def user_logout(request):
     return redirect('home')   
 
 def home(request):
-    events = AddEvents.objects.all()  # Fetch all events from the database
+    events = AddEvents.objects.order_by('-event_date')  # Fetch all events from the database
     return render(request, 'home.html', {'events': events})
 
 def eventdetails(request,pk):
