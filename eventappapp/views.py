@@ -129,7 +129,7 @@ def edit_event(request, pk):
         event.event_venue = request.POST.get('event_venue')
         event.event_description = request.POST.get('event_description')
         event.registration_fee = request.POST.get('registration_fee')
-        AddEvents.objects.update(event_name=event.event_name,event_date=event.event_date,event_venue=event.event_venue,event_description=event.event_description,registration_fee=event.registration_fee)
+        #AddEvents.objects.update(event_name=event.event_name,event_date=event.event_date,event_venue=event.event_venue,event_description=event.event_description,registration_fee=event.registration_fee)
 
         if start_time_12hr:
             event.start_time = datetime.strptime(start_time_12hr, "%I:%M %p").time()
