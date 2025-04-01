@@ -28,6 +28,10 @@
                 <img src="{{ obj.event_poster.url }}" alt="Current Poster" width="200px">
                 <p>Current File: {{ obj.event_poster.name }}</p>
             {% endif %}
+            {% if obj.event_qr %}
+            <img src="{{ obj.event_qr.url }}" alt="Current Payment QR" width="200px">
+            <p>Current File: {{ obj.event_qr.name }}</p>
+        {% endif %}
             <input type="file"  name="event_poster" accept="image/">
             <button type="submit" href="{% url 'organisedevents' %}" class="submit-btn">Submit</button>
         </form>

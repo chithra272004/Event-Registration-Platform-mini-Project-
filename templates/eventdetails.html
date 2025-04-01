@@ -40,7 +40,13 @@
             </div>
 
             <div class="prize-register">
-                <p class="event-prize"><strong>REG FEE:</strong> ₹{{ obj.registration_fee }} </p>
+                <p class="event-prize">
+                    {% if obj.registration_fee > 0 %}
+                    <strong>REG FEE:</strong> ₹{{ obj.registration_fee }} 
+                    {% else %}
+                    <strong>FREE REG</strong>
+                    {% endif %}
+                </p>
                 <a href="{% url 'register' obj.pk %}" class="register-link">Register Now</a>
             </div>
         </div>

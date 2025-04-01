@@ -30,6 +30,7 @@
                 <th>Department</th>
                 <th>Semester</th>
                 <th>College</th>
+                <th>Payment Status</th>
                 </tr>
             </thead>
             {% for participant in participants %}
@@ -42,6 +43,15 @@
                 <td>{{ participant.participant_dept }}</td>
                 <td>{{ participant.participant_sem }}</td>
                 <td>{{ participant.participant_clg }}</td>
+                <td>
+                    {% if participant.participant_payment %}
+                    <a href="{{ participant.participant_payment.url }}" target="_blank">
+                    <img src="{{ participant.participant_payment.url }}" alt="Payment" width="100">
+                    </a>
+                    {% else %}
+                        Free Reg
+                    {% endif %}
+                </td>
                 </tr>
                 
             </tbody>

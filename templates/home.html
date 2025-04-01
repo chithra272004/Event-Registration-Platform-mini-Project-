@@ -46,7 +46,13 @@
 
                     <!-- Right Section (Registration Fee & Details) -->
                     <div class="right">
-                        <p class="prize">REG FEE: ₹{{ event.registration_fee }}</p>
+                        <p class="prize">
+                            {% if event.registration_fee > 0 %}
+                                REG FEE: ₹{{ event.registration_fee }}
+                            {% else %}
+                                FREE REG
+                            {% endif %}
+                        </p>
                         <a href="{% url 'eventdetails' event.pk %}" class="register">View Details</a>
                     </div>
                     

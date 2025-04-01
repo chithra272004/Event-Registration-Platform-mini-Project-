@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import check_password
 from . models import AddEvents,Register, CustomUser
 from datetime import datetime
 # Create your views here.
@@ -24,7 +25,7 @@ def login_view(request):
         except CustomUser.DoesNotExist:
             user = None
 
-        if user and user.password == password:  # ✅ Compare plain text password (no hashing)
+        if user and check_password(password, user.password):  # ✅ Checking hashed password
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
             # ✅ Store user ID instead of organisation name
@@ -40,7 +41,7 @@ def user_logout(request):
     return redirect('home')   
 
 def home(request):
-    events = AddEvents.objects.order_by('-event_date')  
+    events = AddEvents.objects.order_by('event_date')  
     return render(request, 'home.html', {'events': events})
 
 def eventdetails(request,pk):
@@ -67,7 +68,6 @@ def organisedevents(request):
 
     organisation = request.session.get('organisation')
     events = AddEvents.objects.filter(organisation=request.user)
-
     return render(request, 'organised-events.html', {'events': events})
 
 def delete_event(request, pk):
@@ -85,6 +85,7 @@ def addevent(request):
         event_description = request.POST.get('event_description')
         registration_fee = request.POST.get('registration_fee')
         event_poster = request.FILES.get('event_poster')
+        event_qr = request.FILES.get('event_qr')
         if start_time_12hr:
             start_time = datetime.strptime(start_time_12hr, "%I:%M %p").time()
 
@@ -107,6 +108,7 @@ def addevent(request):
             event_description=event_description,
             registration_fee=registration_fee,
             event_poster=event_poster,
+            event_qr=event_qr,
             organisation=organisation
         )
 
@@ -139,6 +141,7 @@ def edit_event(request, pk):
         # Only update the event_poster if a new one is provided
         if request.FILES.get('event_poster'):
             event.event_poster = request.FILES.get('event_poster')
+            event.event_qr = request.FILES.get('event_qr')
 
         event.save()
         messages.success(request, 'Event updated successfully.')
@@ -160,8 +163,9 @@ def register(request, pk):
         participant_clg=request.POST.get('participant_clg')
         participant_dept=request.POST.get('participant_dept')
         participant_sem=request.POST.get('participant_sem')
-        
-        Register.objects.create(event_id=event, participant_name=participant_name,participant_email=participant_email,participant_no=participant_no,participant_clg=participant_clg,participant_dept=participant_dept,participant_sem=participant_sem)
+        participant_payment=request.FILES.get('participant_payment') if event.event_qr else None
+
+        Register.objects.create(event_id=event, participant_name=participant_name,participant_email=participant_email,participant_no=participant_no,participant_clg=participant_clg,participant_dept=participant_dept,participant_sem=participant_sem,participant_payment=participant_payment)
         #register.save()
         messages.success(request, 'Registered successfully.')
         return redirect('home')

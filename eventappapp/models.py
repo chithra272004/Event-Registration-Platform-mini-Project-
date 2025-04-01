@@ -13,7 +13,7 @@ class CustomUserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         if password:
-            user.password = password
+            user.set_password(password)
         user.save(using=self._db)
         return user
 
@@ -29,7 +29,7 @@ class CustomUser(AbstractUser):
     last_name = None   # Remove last_name
     email = models.EmailField(unique=True)
     organisation = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+    #password = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -66,3 +66,6 @@ class Register(models.Model):
     participant_clg=models.CharField(max_length=100)
     participant_dept=models.CharField(max_length=100)
     participant_sem=models.CharField(max_length=50)
+    participant_payment=models.ImageField(upload_to='participant_payments/')
+    def __str__(self):
+        return f"{self.participant_name} - {self.event_id.event_name}"

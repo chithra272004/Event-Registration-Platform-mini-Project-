@@ -25,14 +25,25 @@
         <div class="event_block">
             <div class="event">
                 <strong>{{ event.event_name }}</strong><br><br>
-                <p>Date: {{ event.event_date }}</p>
-                <p>Time: {{ event.start_time }} - {{ event.end_time }}</p>
-                <p>Venue: {{ event.event_venue }}</p>
-                <p>Fee: ₹{{ event.registration_fee }}</p>
-                <p>Description: {{ event.event_description }}</p>
+                <p><em>Date:</em> {{ event.event_date }}</p>
+                <p><em>Time:</em> {{ event.start_time }} - {{ event.end_time }}</p>
+                <p><em>Venue:</em> {{ event.event_venue }}</p>
+                <p><em>Fee:</em> 
+                    {% if event.registration_fee > 0 %}
+                    ₹{{ event.registration_fee }}
+                {% else %}
+                    Free Reg
+                {% endif %}
+                </p>
+                <p><em>Description:</em> {{ event.event_description }}</p>
 
                 {% if event.event_poster %}
+                <p><em>Poster:</em><br>
                     <img src="{{ event.event_poster.url }}" alt="Event Poster" width="100">
+                {% endif %}<br><br> 
+                {% if event.event_qr %}               
+                <p><em>QR code:</em><br>
+                    <img src="{{ event.event_qr.url }}" alt="QR Code for Payment" width="100">
                 {% endif %}
                 
                 <div class="button-group">

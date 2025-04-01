@@ -13,7 +13,14 @@
 <body>
     <div class="container">
         <h3>ENTER PARTICIPANTS DETAILS</h3>
-        <form id="event-form" method="POST" >
+        <form id="event-form" method="POST" enctype="multipart/form-data">
+            {% if event.registration_fee > 0 %}
+                <div class="qr-section">
+                    <h4>Scan to Pay</h4>
+                    <img src="{{ event.event_qr.url }}" alt="QR Code for Payment" width="200">
+                </div>
+            {% endif %}
+
             {% csrf_token %}
             <input type="text" name="participant_name" id="participant_name" placeholder="Name" required>
             <input type="text" name="participant_email" id="participant_email" placeholder="Email" required>
@@ -21,7 +28,12 @@
             <input type="text" name="participant_dept" id="participant_dept" placeholder="Department" required>
             <input type="text" name="participant_sem" id="participant_sem" placeholder="Semester" required>
             <input type="text" name="participant_clg" id="participant_clg" placeholder="College Name" required>
-            
+            {% if event.event_qr %}
+    <div class="payment-section">
+        <label for="participant_payment">Upload Payment Screenshot:</label>
+        <input type="file" name="participant_payment" id="participant_payment" accept="image/*" required>
+    </div>
+{% endif %}
             
             <button type="submit" class="submit-btn">Submit</button>
         </form>
